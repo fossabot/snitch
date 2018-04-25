@@ -8,7 +8,8 @@ defmodule Snitch.Data.Model do
       import Ecto.Query
       alias Snitch.Repo
       alias Snitch.Tools
-      alias Tools.Helper.Query, as: QH
+      alias Snitch.Data.Model
+      alias Tools.QueryHelper, as: QH
     end
   end
 end
