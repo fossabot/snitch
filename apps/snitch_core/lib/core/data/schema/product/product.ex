@@ -4,8 +4,6 @@ defmodule Snitch.Data.Schema.Product do
   """
   use Snitch.Data.Schema
 
-  alias Snitch.Data.Schema.Product
-
   @type t :: %__MODULE__{}
 
   schema "snitch_products" do
