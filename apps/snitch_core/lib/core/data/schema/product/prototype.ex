@@ -6,7 +6,6 @@ defmodule Snitch.Data.Schema.Prototype do
   use Snitch.Data.Schema
   import Ecto.{Changeset, Query}
   alias Snitch.Data.Schema.{OptionType, Prototype, Property}
-  alias Core.Repo
 
   @type t :: %__MODULE__{}
 
@@ -32,6 +31,7 @@ defmodule Snitch.Data.Schema.Prototype do
     timestamps()
   end
 
+  # TODO: https://www.pivotaltracker.com/story/show/157142891
   @doc """
   Returns changeset to create prototype along with `option types`, `properties`,
   `taxons`.
@@ -39,10 +39,10 @@ defmodule Snitch.Data.Schema.Prototype do
   All the records option types, properties and taxons should already be created.
 
     iex> params = %{
-      name: 'Mug', 
+      name: "Mug", 
       option_type_ids: [1, 2], 
       property_ids: [1, 2], 
-      taxon_ids: [1, 2, 3]
+      taxon_ids: [1, 2, 3] 
     }
   """
   @spec changeset(__MODULE__.t(), map()) :: Ecto.Changeset.t()
@@ -60,12 +60,16 @@ defmodule Snitch.Data.Schema.Prototype do
   def parse_properties([]), do: []
 
   def parse_properties(property_ids) do
-    Repo.all(from(props in Property, where: props.id in ^property_ids))
+    # Snitch.Data.Model.Property.get_all(property_ids)
+    # replace with query helper
+    Snitch.Repo.all(from(props in Property, where: props.id in ^property_ids))
   end
 
   defp parse_option_types([]), do: []
 
   defp parse_option_types(option_type_ids) do
-    Repo.all(from(ot in OptionType, where: ot.id in ^option_type_ids))
+    # Snitch.Data.Model.OptionType.get_all(option_type_ids)
+    # replace with query helper
+    Snitch.Repo.all(from(ot in OptionType, where: ot.id in ^option_type_ids))
   end
 end
