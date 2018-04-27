@@ -19,6 +19,12 @@ defmodule Snitch.Data.Schema.Property do
     timestamps()
   end
 
+  @doc """
+  Creates a changeset for creating properties.
+
+  params = %{name: "manufacturer", display_name: "Manufacturer"}
+  """
+  @spec changeset(__MODULE__.t(), map()) :: Ecto.Changeset.t()
   def changeset(%Property{} = property, params \\ %{}) do
     property
     |> cast(params, [:name, :display_name])
