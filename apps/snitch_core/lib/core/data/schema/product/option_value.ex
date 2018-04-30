@@ -30,8 +30,8 @@ defmodule Snitch.Data.Schema.OptionValue do
 
   params = %{name: "S", display_name: "Small", option_type_id: 1}
   """
-  @spec changeset(__MODULE__.t(), map) :: Ecto.Changeset.t()
-  def changeset(%OptionValue{} = option_value, params \\ %{}) do
+  @spec create_changeset(__MODULE__.t(), map) :: Ecto.Changeset.t()
+  def create_changeset(%OptionValue{} = option_value, params \\ %{}) do
     option_value
     |> cast(params, @required_fields)
     |> validate_required(@required_fields)

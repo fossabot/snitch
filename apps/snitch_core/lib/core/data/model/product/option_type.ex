@@ -14,9 +14,11 @@ defmodule Snitch.Data.Model.OptionType do
     QH.get(Product, primary_key, Repo)
   end
 
+  # @spec create()
+
   @spec get_all(map()) :: [Product.t()]
   def get_all(params \\ %{}) do
     # QH.get_all(Product)
-    Schema.Product.get_all(params)
+    Schema.OptionType.get_all(params)
   end
 end

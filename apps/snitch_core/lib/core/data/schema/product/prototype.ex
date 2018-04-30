@@ -33,10 +33,8 @@ defmodule Snitch.Data.Schema.Prototype do
 
   # TODO: https://www.pivotaltracker.com/story/show/157142891
   @doc """
-  Returns changeset to create prototype along with `option types`, `properties`,
+  Returns changeset to create prototype along with `option_types`, `properties`,
   `taxons`.
-
-  All the records option types, properties and taxons should already be created.
 
     iex> params = %{
       name: "Mug", 

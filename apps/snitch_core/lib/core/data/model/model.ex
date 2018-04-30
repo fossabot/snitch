@@ -9,7 +9,7 @@ defmodule Snitch.Data.Model do
       alias Snitch.Repo
       alias Snitch.Tools
       alias Snitch.Data.Model
-      alias Tools.QueryHelper, as: QH
+      alias Snitch.Tools.Helper.Query, as: QH
     end
   end
 end
