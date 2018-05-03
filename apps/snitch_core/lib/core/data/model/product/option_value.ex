@@ -6,10 +6,14 @@ defmodule Snitch.Data.Model.OptionValue do
   alias Snitch.Data.Schema.OptionValue, as: OptionValueSchema
 
   @doc """
-  Create a new `OptionValue` 
+  Create a new `OptionValue`
+
+    > name: "Tshirt-size"
+      display_name: "Size"
+      option_type_id: 1
   """
-  @spec create(String.t(), String.t(), non_neg_integer) :: term
-  def create(name, display_name, option_type_id) do
+  @spec create(map(), non_neg_integer) :: term
+  def create(%{name: name, display_name: display_name}, option_type_id) do
     QH.create(
       OptionValueSchema,
       %{
@@ -21,9 +25,9 @@ defmodule Snitch.Data.Model.OptionValue do
     )
   end
 
-  # @spec get_all(map()) :: [Product.t()]
-  # def get_all(params \\ %{}) do
-  #   QH.get_all(Product)
-  #   Schema.OptionType.get_all(params)
-  # end
+  @doc """
+  Fetches all the `OptionValues`
+  """
+  @spec get_all() :: list(OptionValue.t())
+  def get_all, do: Repo.all(OptionValueSchema)
 end
