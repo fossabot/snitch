@@ -15,7 +15,5 @@ defmodule Snitch.Data.Model.OptionValueTest do
 
   test "with valid attdsas", %{option_type: option_type} do
     {:ok, option_value} = OptionValue.create(@params, option_type.id)
-    require IEx
-    IEx.pry()
   end
 end
