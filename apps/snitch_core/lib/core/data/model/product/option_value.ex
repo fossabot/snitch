@@ -8,19 +8,17 @@ defmodule Snitch.Data.Model.OptionValue do
   @doc """
   Create a new `OptionValue`
 
-    > name: "Tshirt-size"
-      display_name: "Size"
-      option_type_id: 1
+    > params = %{
+    >  name: "Tshirt-size"
+    >  display_name: "Size"
+    >  option_type_id: 1
+    > }
   """
-  @spec create(map(), non_neg_integer) :: term
-  def create(%{name: name, display_name: display_name}, option_type_id) do
+  @spec create(map()) :: term
+  def create(params) do
     QH.create(
       OptionValueSchema,
-      %{
-        name: name,
-        display_name: display_name,
-        option_type_id: option_type_id
-      },
+      params,
       Repo
     )
   end
