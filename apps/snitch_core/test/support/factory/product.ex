@@ -38,8 +38,6 @@ defmodule Snitch.Factory.Product do
       end
 
       def option_types(context) do
-        # require IEx
-        # IEx.pry
         option_type = insert(:option_type)
         [option_type: option_type]
       end

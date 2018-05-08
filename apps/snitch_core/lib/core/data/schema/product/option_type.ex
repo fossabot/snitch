@@ -1,6 +1,6 @@
 defmodule Snitch.Data.Schema.OptionType do
   @moduledoc ~S"""
-  Option Type are the properties which decide the 
+  Option Type are the properties which decide the
   variants of a the products.
 
   Size and Colour would become option types of a product
@@ -28,8 +28,15 @@ defmodule Snitch.Data.Schema.OptionType do
 
   params = %{name: "size", display_name: "Size"}
   """
-  @spec changeset(__MODULE__.t(), map()) :: Ecto.Changeset.t()
-  def changeset(%OptionType{} = option_type, params \\ %{}) do
+  @spec create_changeset(__MODULE__.t(), map()) :: Ecto.Changeset.t()
+  def create_changeset(%OptionType{} = option_type, params \\ %{}) do
+    option_type
+    |> cast(params, [:name, :display_name])
+    |> validate_required([:name, :display_name])
+  end
+
+  @spec update_changeset(__MODULE__.t(), map()) :: Ecto.Changeset.t()
+  def update_changeset(%OptionType{} = option_type, params \\ %{}) do
     option_type
     |> cast(params, [:name, :display_name])
     |> validate_required([:name, :display_name])

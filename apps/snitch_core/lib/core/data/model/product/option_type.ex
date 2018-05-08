@@ -2,23 +2,35 @@ defmodule Snitch.Data.Model.OptionType do
   @moduledoc """
 
   """
-  alias Snitch.Data.Schema
+  alias Snitch.Data.Schema.OptionType, as: OptionTypeSchema
   use Snitch.Data.Model
 
   @doc """
-  Fetch a product with id
-  TODO: support fetching with slug
+  Creates an `OptionType`
   """
-  @spec get(non_neg_integer) :: Product.t() | nil
-  def get(primary_key) do
-    QH.get(Product, primary_key, Repo)
+  @spec create(map()) :: {:ok, OptionTypeSchema.t()} | {:error, Ecto.Changeset.t()}
+  def create(params \\ %{}) do
+    %OptionTypeSchema{}
+    |> OptionTypeSchema.create_changeset(params)
+    |> Repo.insert()
   end
 
-  # @spec create()
-
-  @spec get_all(map()) :: [Product.t()]
-  def get_all(params \\ %{}) do
-    # QH.get_all(Product)
-    Schema.OptionType.get_all(params)
+  @spec update(map()) :: {:ok, OptionTypeSchema.t()} | {:error, Ecto.Changeset.t()}
+  def update(params \\ %{}, instance \\ nil) do
+    QH.update(OptionTypeSchema, params, instance, Repo)
   end
+
+  @doc """
+  Fetches one option type based on `id` or `field`
+  """
+  @spec get(non_neg_integer | map) :: OptionTypeSchema.t()
+  def get(query_fields) do
+    QH.get(OptionTypeSchema, query_fields, Repo)
+  end
+
+  @doc """
+  Fetches all the option types in the DB
+  """
+  @spec get_all :: list(OptionTypeSchema.t())
+  def get_all, do: Repo.all(OptionTypeSchema)
 end
