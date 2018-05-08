@@ -17,8 +17,9 @@ defmodule Snitch.Data.Schema.OptionTypeTest do
 
   describe "invalid" do
     test "option value changeset for missing params" do
-      invalid_changeset = %OptionTypeSchema{}
-                            |> OptionTypeSchema.create_changeset(@invalid_option_type_params)
+      invalid_changeset =
+        %OptionTypeSchema{}
+        |> OptionTypeSchema.create_changeset(@invalid_option_type_params)
 
       refute invalid_changeset.valid?
       assert Kernel.length(invalid_changeset.errors) == 1
@@ -28,8 +29,9 @@ defmodule Snitch.Data.Schema.OptionTypeTest do
 
   describe "valid" do
     test "option value changeset with correct params" do
-      changeset = %OptionTypeSchema{}
-                    |> OptionTypeSchema.create_changeset(@valid_option_type_params)
+      changeset =
+        %OptionTypeSchema{}
+        |> OptionTypeSchema.create_changeset(@valid_option_type_params)
 
       assert true = changeset.valid?
       assert "size" = changeset.changes.name

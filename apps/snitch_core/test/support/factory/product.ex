@@ -7,7 +7,7 @@ defmodule Snitch.Factory.Product do
 
       def product_factory do
         %Schema.Product{
-          name: "Firebolt 2015",
+          name: sequence(:name, &"Firebolt 201#{&1}"),
           available_on: "",
           deleted_at: nil,
           discontinue_on: nil,
@@ -34,10 +34,23 @@ defmodule Snitch.Factory.Product do
         }
       end
 
-      def option_values(%{option_types: option_types} = context) do
+      def option_values(%{option_type: option_type} = context) do
+        count = Map.get(context, :option_value_count, 4)
+        option_values = insert_list(count, :option_value, option_type: option_type)
+        [option_values: option_values]
+      end
+
+      def option_value(%{option_type: option_type} = context) do
+        option_value = insert(:option_value, option_type: option_type)
+        [option_value: option_value]
       end
 
       def option_types(context) do
+        option_types = insert_list(3, :option_type)
+        [option_types: option_types]
+      end
+
+      def option_type(context) do
         option_type = insert(:option_type)
         [option_type: option_type]
       end

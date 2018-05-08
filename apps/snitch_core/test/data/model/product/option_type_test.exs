@@ -32,7 +32,7 @@ defmodule Snitch.Data.Model.OptionTypeTest do
   end
 
   describe "get" do
-    setup :option_types
+    setup :option_type
 
     test "returns nil when invalid id is passed" do
       assert nil == OptionTypeModel.get(-1)
@@ -56,10 +56,10 @@ defmodule Snitch.Data.Model.OptionTypeTest do
   end
 
   describe "update" do
-    setup :option_types
+    setup :option_type
 
     test "succeeds with valid params", %{option_type: option_type} do
-      new_name = "ashish"
+      new_name = "length"
       {:ok, ot} = OptionTypeModel.update(%{name: new_name}, option_type)
 
       assert new_name = ot.name
