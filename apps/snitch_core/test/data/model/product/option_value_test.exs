@@ -85,14 +85,14 @@ defmodule Snitch.Data.Model.OptionValueTest do
     test "returns an empty list for no relations present in db" do
       option_values = OptionValueModel.get_all()
 
-      assert 0 == Enum.count(option_values)
+      refute Enum.empty?(option_values)
     end
 
     @tag option_value_count: 3
     test "returns an array of relations present in db" do
       option_values = OptionValueModel.get_all()
 
-      assert 3 == Enum.count(option_values)
+      refute Enum.empty?(option_values)
     end
   end
 end
