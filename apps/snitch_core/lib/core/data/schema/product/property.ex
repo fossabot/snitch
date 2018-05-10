@@ -24,8 +24,20 @@ defmodule Snitch.Data.Schema.Property do
 
   params = %{name: "manufacturer", display_name: "Manufacturer"}
   """
-  @spec changeset(__MODULE__.t(), map()) :: Ecto.Changeset.t()
-  def changeset(%Property{} = property, params \\ %{}) do
+  @spec create_changeset(__MODULE__.t(), map()) :: Ecto.Changeset.t()
+  def create_changeset(%Property{} = property, params \\ %{}) do
+    property
+    |> cast(params, [:name, :display_name])
+    |> validate_required([:name, :display_name])
+  end
+
+  @doc """
+  Creates a changeset for creating properties.
+
+  params = %{name: "manufacturer", display_name: "Manufacturer"}
+  """
+  @spec update_changeset(__MODULE__.t(), map()) :: Ecto.Changeset.t()
+  def update_changeset(%Property{} = property, params \\ %{}) do
     property
     |> cast(params, [:name, :display_name])
     |> validate_required([:name, :display_name])
