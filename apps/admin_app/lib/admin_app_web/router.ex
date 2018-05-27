@@ -25,6 +25,7 @@ defmodule AdminAppWeb.Router do
       post("/cart", OrderController, :update, as: :cart)
     end
 
+    resources("/products", ProductController)
     resources("/tax_categories", TaxCategoryController, only: [:index, :new, :create])
   end
 

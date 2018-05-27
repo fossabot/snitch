@@ -3,6 +3,7 @@ defmodule Snitch.Data.Model.Product do
 
   """
   alias Snitch.Data.Schema
+
   use Snitch.Data.Model
 
   @doc """
@@ -14,9 +15,10 @@ defmodule Snitch.Data.Model.Product do
     QH.get(Product, primary_key, Repo)
   end
 
-  @spec get_all(map()) :: [Product.t()]
-  def get_all(params \\ %{}) do
+  @spec list_products(map()) :: [Product.t()]
+  def list_products(params \\ %{}) do
     # QH.get_all(Product)
-    Schema.Product.get_all(params)
+    # Schema.Product.get_all(params)
+    [%Schema.Product{name: "Firebolt"}, %Schema.Product{name: "Nimbus 2000"}]
   end
 end

@@ -18,4 +18,12 @@ defmodule Snitch.Data.Schema.Product do
     field(:promotionable, :boolean)
     timestamps()
   end
+
+  @required_fields ~w(name)
+
+  def changeset(model, params \\ {}) do
+    model
+    |> cast(params, @required_fields)
+    |> validate_required(@required_fields)
+  end
 end
