@@ -15,7 +15,8 @@ defmodule Snitch.Factory do
     CardPayment,
     Card,
     TaxCategory,
-    TaxRate
+    TaxRate,
+    Role
   }
 
   alias Snitch.Repo
@@ -132,6 +133,13 @@ defmodule Snitch.Factory do
       value: 0.5,
       included_in_price: false,
       calculator: Snitch.Domain.Calculator.Default
+    }
+  end
+
+  def role_factory do
+    %Role{
+      name: "admin",
+      description: "can manage all"
     }
   end
 
