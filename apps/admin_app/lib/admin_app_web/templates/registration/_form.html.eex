@@ -1,0 +1,9 @@
+<%= form_for @changeset, @action, [as: :registration],
+fn f -> %>
+  <%= input f, :first_name %>
+  <%= input f, :last_name %>
+  <%= input f, :email %>
+  <%= input f, :password %>
+  <%= input f, :password_confirmation %>
+  <%= submit "Submit", class: "btn btn-primary submit-btn" %>
+<% end %>

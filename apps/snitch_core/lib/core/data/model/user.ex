@@ -23,7 +23,7 @@ defmodule Snitch.Data.Model.User do
 
   @spec get(map | non_neg_integer) :: UserSchema.t() | nil
   def get(query_fields_or_primary_key) do
-    QH.get(UserSchema, query_fields_or_primary_key, Repo)
+    QH.get(UserSchema, query_fields_or_primary_key, Repo) |> Repo.preload(:role)
   end
 
   @spec get_all() :: [UserSchema.t()]

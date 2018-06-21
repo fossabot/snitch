@@ -44,7 +44,8 @@ defmodule AdminApp.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:snitch_core, "~> 0.0.1", in_umbrella: true},
-      {:guardian, "~> 1.0"}
+      {:guardian, "~> 1.0"},
+      {:params, "~> 2.0"}
     ]
   end
 end
