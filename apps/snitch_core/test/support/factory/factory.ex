@@ -22,11 +22,14 @@ defmodule Snitch.Factory do
   alias Snitch.Repo
 
   def user_factory do
+    role = insert(:role)
+
     %User{
       first_name: sequence(:first_name, &"Tony-#{&1}"),
       last_name: sequence(:last_name, &"Stark-#{&1}"),
       email: sequence(:email, &"ceo-#{&1}@stark.com"),
-      password_hash: "NOTASECRET"
+      password_hash: "NOTASECRET",
+      role_id: role.id
     }
   end
 

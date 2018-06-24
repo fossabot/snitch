@@ -41,9 +41,8 @@ defmodule AdminAppWeb.SessionController do
   end
 
   defp login({:ok, user}, conn) do
-    Guardian.encode_and_sign(user.id, %{})
-
     conn
+    |> Guardian.Plug.sign_in(user)
     |> put_flash(:info, "You are logged in!!")
     |> redirect(to: page_path(conn, :index))
   end
@@ -51,5 +50,6 @@ defmodule AdminAppWeb.SessionController do
   defp login({:error, _}, conn) do
     conn
     |> put_flash(:error, "Wrong email/password")
+    |> redirect(to: session_path(conn, :new))
   end
 end

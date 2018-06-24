@@ -1,6 +1,6 @@
 <div class="card container text-uppercase">
-    <h4>Sign Up</h4>
+    <h4><a href="/roles">Roles</a> / New Role</h4>
     <hr/>
     <%= render "_form.html", changeset: @changeset,
-      conn: @conn, action: registration_path(@conn, :create) %>
+      conn: @conn, action: role_path(@conn, :create) %>
 </div>

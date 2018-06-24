@@ -52,7 +52,7 @@ defmodule Snitch.Data.Schema.User do
     timestamps()
   end
 
-  @required_fields ~w(first_name last_name email password password_confirmation)a
+  @required_fields ~w(first_name last_name email password password_confirmation role_id)a
   @create_fields [:is_admin | @required_fields]
   @update_fields ~w(sign_in_count failed_attempts is_admin)a ++ @create_fields
 

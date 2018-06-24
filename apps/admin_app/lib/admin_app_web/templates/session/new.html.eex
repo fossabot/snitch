@@ -1,5 +1,5 @@
 <div class="card container text-uppercase">
-  <h4>Sign Up</h4>
+  <h4>Sign In</h4>
   <hr/>
   <%= form_for @changeset, session_path(@conn, :create), [as: :session],
 fn f -> %>

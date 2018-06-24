@@ -59,4 +59,12 @@ defmodule Snitch.Data.Model.Role do
   def get_all do
     Repo.all(Role)
   end
+
+  @doc """
+  Returns a list of roles in the format {role.name, role.id}
+  """
+  @spec formatted_list() :: [{String.t(), non_neg_integer}]
+  def formatted_list() do
+    Repo.all(from(c in Role, select: {c.name, c.id}))
+  end
 end

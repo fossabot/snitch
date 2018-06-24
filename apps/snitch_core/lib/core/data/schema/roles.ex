@@ -31,8 +31,7 @@ defmodule Snitch.Data.Schema.Role do
   def create_changeset(%__MODULE__{} = role, params) do
     role
     |> cast(params, @create_params)
-    |> validate_required(@required_params)
-    |> unique_constraint(:name)
+    |> common_changeset()
   end
 
   @doc """
@@ -42,6 +41,12 @@ defmodule Snitch.Data.Schema.Role do
   def update_changeset(%__MODULE__{} = role, params) do
     role
     |> cast(params, @update_params)
+    |> common_changeset()
+  end
+
+  defp common_changeset(changeset) do
+    changeset
+    |> validate_required(@required_params)
     |> unique_constraint(:name)
   end
 end

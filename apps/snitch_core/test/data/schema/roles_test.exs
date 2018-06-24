@@ -35,4 +35,14 @@ defmodule Snitch.Data.Schema.RoleTest do
     assert {:ok, new_role} = Repo.update(cset)
     assert new_role.description != role.description
   end
+
+  test "udpate fails with empty name" do
+    cset = %{valid?: validity} = Role.create_changeset(%Role{}, @params)
+    assert validity
+    assert {:ok, role} = Repo.insert(cset)
+
+    params = %{name: "", description: "manage and ship all orders"}
+    %{valid?: validity} = Role.update_changeset(role, params)
+    refute validity
+  end
 end

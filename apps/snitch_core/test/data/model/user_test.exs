@@ -4,14 +4,18 @@ defmodule Snitch.Data.Model.UserTest do
 
   alias Snitch.Data.Model.User
   alias Snitch.Data.Schema.User, as: UserSchema
+  import Snitch.Factory
 
   setup do
+    role = insert(:role)
+
     valid_attrs = %{
       first_name: "John",
       last_name: "Doe",
       email: "john@domain.com",
       password: "password123",
-      password_confirmation: "password123"
+      password_confirmation: "password123",
+      role_id: role.id
     }
 
     [valid_attrs: valid_attrs]

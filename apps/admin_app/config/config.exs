@@ -25,6 +25,10 @@ config :admin_app, AdminAppWeb.Guardian,
   issuer: "admin_app",
   secret_key: "3ZqWoF0Smu2G81Q5f/U0z5etD7nYUkYurLs6FEAm+Mj1kGisPyynEDeR4NcoTY77"
 
+config :admin_app, AdminAppWeb.AuthenticationPipe,
+  module: AdminAppWeb.Guardian,
+  error_handler: AdminAppWeb.AuthErrorHandler
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
