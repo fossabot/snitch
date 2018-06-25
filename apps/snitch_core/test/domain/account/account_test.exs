@@ -5,38 +5,45 @@ defmodule Snitch.Domain.AccountTest do
 
   alias Snitch.Domain.Account
 
-  @params %{
-    email: "superman@himalya.com",
-    first_name: "Super",
-    last_name: "Man",
-    password: "supergirl",
-    password_confirmation: "supergirl"
-  }
+  setup do
+    role = insert(:role)
 
-  test "register user successfully" do
-    {:ok, user} = Account.register(@params)
+    valid_attrs = %{
+      email: "superman@himalya.com",
+      first_name: "Super",
+      last_name: "Man",
+      password: "supergirl",
+      password_confirmation: "supergirl",
+      role_id: role.id
+    }
+
+    [valid_attrs: valid_attrs]
   end
 
-  test "registration failed missing params" do
-    params = Map.drop(@params, [:email])
+  test "register user successfully", %{valid_attrs: va} do
+    {:ok, user} = Account.register(va)
+  end
+
+  test "registration failed missing params", %{valid_attrs: va} do
+    params = Map.drop(va, [:email])
     {:error, changeset} = Account.register(params)
     assert %{email: ["can't be blank"]} = errors_on(changeset)
   end
 
-  test "user authenticated successfully" do
-    assert {:ok, user} = Account.register(@params)
-    {:ok, user} = Account.authenticate(@params.email, @params.password)
+  test "user authenticated successfully", %{valid_attrs: va} do
+    assert {:ok, user} = Account.register(va)
+    {:ok, user} = Account.authenticate(va.email, va.password)
   end
 
-  test "user unauthenticated bad email" do
-    assert {:ok, user} = Account.register(@params)
-    {:error, message} = Account.authenticate("tony@stark.com", @params.password)
+  test "user unauthenticated bad email", %{valid_attrs: va} do
+    assert {:ok, user} = Account.register(va)
+    {:error, message} = Account.authenticate("tony@stark.com", va.password)
     assert message == :not_found
   end
 
-  test "user unauthenticated bad password" do
-    assert {:ok, user} = Account.register(@params)
-    {:error, message} = Account.authenticate(@params.email, "catwoman")
+  test "user unauthenticated bad password", %{valid_attrs: va} do
+    assert {:ok, user} = Account.register(va)
+    {:error, message} = Account.authenticate(va.email, "catwoman")
     assert message == :not_found
   end
 end
