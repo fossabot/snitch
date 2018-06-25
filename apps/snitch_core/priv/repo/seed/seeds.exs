@@ -39,3 +39,5 @@ Stocks.seed_stock_locations!()
 
 # seeds the taxonomy
 Taxonomy.seed()
+
+Product.seed()
