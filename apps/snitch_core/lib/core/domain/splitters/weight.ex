@@ -1,9 +1,11 @@
-defmodule Snitch.Core.Domain.Splitters.Weight do
+defmodule Snitch.Domain.Splitters.Weight do
   @moduledoc """
   Splitter to split that packages based on weight
   """
   # TODO https://www.pivotaltracker.com/story/show/157818616
   @bin_threshold Decimal.new(150)
+
+  def split([]), do: []
 
   def split(packages) do
     packages

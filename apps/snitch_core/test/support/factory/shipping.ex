@@ -3,7 +3,7 @@ defmodule Snitch.Factory.Shipping do
 
   defmacro __using__(_opts) do
     quote do
-      alias Snitch.Data.Schema.{ShippingMethod, PackageItem, Package, ShippingCategory}
+      alias Snitch.Data.Schema.{Package, PackageItem, ShippingCategory, ShippingMethod}
 
       def shipping_method_factory do
         %ShippingMethod{
@@ -15,7 +15,6 @@ defmodule Snitch.Factory.Shipping do
 
       def package_item_factory do
         %PackageItem{
-          number: sequence("item_"),
           state: "pending",
           quantity: 1,
           delta: 0,
